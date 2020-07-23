@@ -1,7 +1,20 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const Post = require("./models/post");
 
 const app = express();
+
+mongoose
+  .connect(
+    "mongodb+srv://abhi:CjiO9NBgimlpxeUf@cluster0.tv3f7.mongodb.net/node-angular?retryWrites=true&w=majority"
+  )
+  .then(() => {
+    console.log("connected DB");
+  })
+  .catch(() => {
+    console.log("connection failed");
+  });
 
 app.use(bodyParser.json());
 
@@ -16,8 +29,12 @@ app.use((req, res, next) => {
 });
 
 app.post("/api/posts", (req, res, next) => {
-  const post = req.body;
-  console.log(post);
+  const post = new Post({
+    title: req.body.title,
+    content: req.body.content
+  });
+
+  post.save();
   res.status(201).json();
 });
 
