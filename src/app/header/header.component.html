@@ -22,7 +22,7 @@
     <li *ngIf="!userIsAuthenticated">
       <a
         mat-button
-        routerLink="/login"
+        routerLink="/auth/login"
         routerLinkActive="mat-accent"
         [routerLinkActiveOptions]="{ exact: true }"
         >login</a
@@ -31,7 +31,7 @@
     <li *ngIf="!userIsAuthenticated">
       <a
         mat-button
-        routerLink="/signup"
+        routerLink="/auth/signup"
         routerLinkActive="mat-accent"
         [routerLinkActiveOptions]="{ exact: true }"
         >Sign up</a
