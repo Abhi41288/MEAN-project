@@ -10,7 +10,7 @@
   >
   <span class="spacer"></span>
   <ul>
-    <li>
+    <li *ngIf="userIsAuthenticated">
       <a
         mat-button
         routerLink="/create"
@@ -19,7 +19,7 @@
         >New Post</a
       >
     </li>
-    <li>
+    <li *ngIf="!userIsAuthenticated">
       <a
         mat-button
         routerLink="/login"
@@ -28,7 +28,7 @@
         >login</a
       >
     </li>
-    <li>
+    <li *ngIf="!userIsAuthenticated">
       <a
         mat-button
         routerLink="/signup"
@@ -36,6 +36,9 @@
         [routerLinkActiveOptions]="{ exact: true }"
         >Sign up</a
       >
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <button mat-button (click)="onLogout()">Logout</button>
     </li>
   </ul>
 </mat-toolbar>
