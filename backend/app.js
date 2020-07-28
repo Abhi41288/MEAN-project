@@ -17,11 +17,11 @@ mongoose
     console.log("connected DB");
   })
   .catch(() => {
-    console.log("connection failed");
+    console.log("connection failed " + process.env.MONGO_ATLAS_PW);
   });
 
 app.use(bodyParser.json());
-app.use("/images", express.static(path.join("backend/images")));
+app.use("/images", express.static(path.join("images")));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -33,6 +33,7 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Method",
     "GET,POST,PUT,PATCH,DELETE,OPTIONS"
   );
+  res.setHeader("Allow", "GET,POST,PUT,PATCH,DELETE,OPTIONS");
   next();
 });
 
